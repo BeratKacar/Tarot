@@ -1,0 +1,54 @@
+/* Kartın dış kapsayıcısı: 3D derinlik hissi için perspective ekliyoruz */
+.card-container {
+  width: 220px;
+  height: 340px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+/* Kartın dönen ana gövdesi */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Hafif yaylanma efekti */
+  transform-style: preserve-3d;
+}
+
+/* State değiştiğinde çalışacak dönme sınıfı */
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Kartın ön ve arka yüzeylerinin ortak özellikleri */
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden; /* Arkada kalan yüzü gizler */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Kartın kapalı hali (Sırt Deseni) */
+.card-front {
+  background: linear-gradient(135deg, #1a0b2e, #4a1c40);
+  color: #d4af37;
+  border: 2px solid #d4af37;
+}
+
+/* Kartın açık hali (Falın/Görselin olduğu kısım) */
+.card-back {
+  background-color: #f4e8d4; /* Parşömen rengi */
+  color: #2c1e16;
+  transform: rotateY(180deg);
+  border: 2px solid #2c1e16;
+}
